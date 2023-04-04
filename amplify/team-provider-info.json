@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifycd74a92026fa4-staging-32039-authRole",
+      "UnauthRoleArn": "arn:aws:iam::472904045013:role/amplify-amplifycd74a92026fa4-staging-32039-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::472904045013:role/amplify-amplifycd74a92026fa4-staging-32039-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-amplifycd74a92026fa4-staging-32039-deployment",
+      "UnauthRoleName": "amplify-amplifycd74a92026fa4-staging-32039-unauthRole",
+      "StackName": "amplify-amplifycd74a92026fa4-staging-32039",
+      "StackId": "arn:aws:cloudformation:eu-west-1:472904045013:stack/amplify-amplifycd74a92026fa4-staging-32039/828b5170-d1ce-11ed-93f0-0241063e6edd",
+      "AmplifyAppId": "d2bh0kdwu2wq3u"
+    },
+    "categories": {
+      "auth": {
+        "liveshoppingplatform": {}
+      }
+    }
+  }
+}

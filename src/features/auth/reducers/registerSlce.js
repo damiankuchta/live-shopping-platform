@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from '../../../configs/customAxios';
+import { Auth } from 'aws-amplify';
+
 
 const initialState = {
   loading: false,
@@ -32,12 +33,12 @@ const registerSlice = createSlice({
 export const { registerStart, registerSuccess, registerFailure } = registerSlice.actions;
 
 export const register = (credentials) => async (dispatch) => {
+
   try {
     dispatch(registerStart());
-
-    const response = await axios.post('registration/', credentials);
-
-    dispatch(registerSuccess(response.data));
+    const user = await Auth.signUp(credentials);
+    dispatch(registerSuccess(user.username));
+    return user;
   } catch (error) {
     dispatch(registerFailure(error.message));
   }

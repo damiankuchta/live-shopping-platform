@@ -1,9 +1,8 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { TextField, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { register as postRegister } from '../reducers/registerSlce';
+import TextField from "../../../components/TextField";
+import RadioGroup from "../../../components/RadioGroup";
 
 const Form = styled('form')({
   display: 'flex',
@@ -16,53 +15,50 @@ const Form = styled('form')({
   },
 });
 
-const RegisterForm = () => {
-  const dispatch = useDispatch();
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const onSubmit = (formData) => {
-    dispatch(postRegister(formData));
-  };
-
+const RegisterForm = ({ onSubmit, errors, register }) => {
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={onSubmit}>
+      <TextField
+        label="E-mail"
+        type="email"
+        register_id="username"
+        register={register}
+        errors={errors}
+      />
+
       <TextField
         label="Username"
-        type="text"
-        id="username"
-        {...register('username', { required: true })}
-        error={!!errors.username}
-        helperText={errors.username ? 'This field is required' : ''}
+        register_id="nickname"
+        register={register}
+        errors={errors}
       />
 
       <TextField
-        label="Email"
-        type="email"
-        id="email"
-        {...register('email', { required: true })}
-        error={!!errors.email}
-        helperText={errors.email ? 'This field is required' : ''}
+        register_id="name"
+        register={register}
+        errors={errors}
       />
 
       <TextField
-        label="Password"
-        type="password"
-        id="password1"
-        {...register('password1', { required: true })}
-        error={!!errors.password}
-        helperText={errors.password ? 'This field is required' : ''}
+        label="Surname"
+        register_id="familyname"
+        register={register}
+        errors={errors}
       />
 
-
-        <TextField
-        label="Repeat password"
-        type="password"
-        id="password2"
-        {...register('password2', { required: true })}
-        error={!!errors.password}
-        helperText={errors.password ? 'This field is required' : ''}
+      <TextField
+        register_id="address"
+        register={register}
+        errors={errors}
       />
 
+      {/* <RadioGroup
+        register_id='gender'
+        register={register}
+        errors={errors}
+        values={['male', 'female', 'other']}
+      />
+       */}
       <Button
         variant="contained"
         color="primary"

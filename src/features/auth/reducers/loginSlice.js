@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from '../../../configs/customAxios';
+import { Auth } from 'aws-amplify';
 
 const initialState = {
   user: null,
@@ -33,13 +33,18 @@ export const { loginSuccess, loginFailure, logoutSuccess } = authSlice.actions;
 
 export const login = (credentials) => async (dispatch) => {
   try {
-    // make login API call and get user data
-    const response = await axios.post('login/', credentials);
-    const user = null
-    dispatch(loginSuccess(user));
-  } catch (error) {
-    dispatch(loginFailure(error.message));
-  }
+      // AWS Amplify Auth API call to login
+      console.log(credentials)
+      const user = await Auth.signIn(credentials.email, credentials.password);
+      dispatch(loginSuccess(user));
+      console.log(user)
+      return user;
+    } catch (error) {
+      dispatch(loginFailure(error.message));
+    }
+
 };
+
+
 
 export default authSlice.reducer;
