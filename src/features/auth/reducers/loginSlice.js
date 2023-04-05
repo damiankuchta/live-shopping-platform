@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Auth } from 'aws-amplify';
+import { push } from "redux-first-history";
 
 const initialState = {
   user: null,
@@ -37,8 +38,7 @@ export const login = (credentials) => async (dispatch) => {
       console.log(credentials)
       const user = await Auth.signIn(credentials.email, credentials.password);
       dispatch(loginSuccess(user));
-      console.log(user)
-      return user;
+      dispatch(push('/'));
     } catch (error) {
       dispatch(loginFailure(error.message));
     }
