@@ -1,42 +1,18 @@
 import React from 'react';
-import { Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { useFormContext } from 'react-hook-form';
+
 import TextField from "../../../components/TextField";
 import RadioGroup from "../../../components/RadioGroup";
-import { useWatch, useFormContext } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import FormButton from "../../../components/FormButton";
+import StyledAuthForm from "./StyledAuthForm";
 
-const Form = styled('form')({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  '& > *': {
-    margin: '8px',
-    width: '25ch',
-  },
-});
-
-let userSchema = yup.object().shape({
-  userName: yup.string().email(),
-  nickname: yup.string().min(8).max(20),
-  password: yup.string().min(8).max(20).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
-  password2: yup.string().min(8).max(20).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
-            .oneOf([yup.ref('password'), null], 'doNotMatch'),
-  name: yup.string(),
-  familyname: yup.string(),
-  address: yup.string()
-}).required();
 
 const RegisterForm = () => {
 
-  const {register, formState: {errors}, handleSubmit } = useFormContext({
-    resolver: yupResolver(userSchema),
-  });
+  const {register, formState: {errors}, handleSubmit } = useFormContext();
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <StyledAuthForm onSubmit={handleSubmit}>
       <TextField
         label="E-mail"
         type="email"
@@ -47,7 +23,7 @@ const RegisterForm = () => {
 
       <TextField
         label="Username"
-        register_id="nickname"
+        register_id="preferred_username"
         register={register}
         errors={errors}
       />
@@ -66,7 +42,7 @@ const RegisterForm = () => {
         register={register}
         errors={errors}
       />
-
+{/* 
       <TextField
         register_id="name"
         register={register}
@@ -84,24 +60,17 @@ const RegisterForm = () => {
         register_id="address"
         register={register}
         errors={errors}
-      />
+      /> */}
 
-      <RadioGroup
+      {/* <RadioGroup
         register_id='gender'
         register={register}
         errors={errors}
         values={['male', 'female', 'other']}
-      />
+      /> */}
       
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ margin: '16px 0' }}
-        type="submit"
-      >
-        Register
-      </Button>
-    </Form>
+      <FormButton text={'Register'}/>
+    </StyledAuthForm>
   );
 };
 

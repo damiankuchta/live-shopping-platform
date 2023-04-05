@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Auth } from 'aws-amplify';
+import { push } from "redux-first-history";
 
 const initialState = {
   loading: false,
@@ -35,18 +36,24 @@ export const register = (credentials) => async (dispatch) => {
 
   try {
     dispatch(registerStart());
-    console.log(credentials)
     const user = await Auth.signUp({
       username: credentials.username,
       password: credentials.password,
       attributes: {
-        nickname: credentials.nickname,
-        name: credentials.name,
-        family_name: credentials.family_name,
-        address: credentials.address,
-        gender: credentials.gender
+        birthdate: "",
+        name: "",
+        family_name: "",
+        address: "",
+        gender: "",
+        profile: "",
+        website: "",
+        locale: "",
+        preferred_username: credentials.preferred_username,
+        phone_number: "",
+        picture: "",
       }});
     dispatch(registerSuccess(user.username));
+    dispatch(push('/register-success'));
   } catch (error) {
     dispatch(registerFailure(error.message));
   }
