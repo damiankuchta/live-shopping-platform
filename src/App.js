@@ -18,6 +18,10 @@ import { HistoryRouter as Router } from "redux-first-history/rr6";
 import { Authenticator } from '@aws-amplify/ui-react';
 import SignOut from "./features/auth/components/SignOut";
 
+import * as links from "./configs/routerLinks";
+
+import PrivateRoute from "./components/Router/PrivateRoute"
+
 export default function App() {
 
   Amplify.configure(awsconfig);
@@ -28,13 +32,18 @@ export default function App() {
         <Router history={history}>
           <TopBar/>
           <Routes >
-                <Route path="/" Component={() => <div>Home</div>}/>
-                <Route path="/login" Component={LoginForm}/>
-                <Route path="/register" Component={RegisterForm}/>
-                <Route path="/signOut" Component={SignOut}/>
-                <Route path="/register/success" Component={RegisterSuccess}/>
-                <Route path="/video-capture" Component={VideoCapture}/>
-                {/* <Route exact path="/">
+                <Route path={links.home} Component={() => <div>Home</div>}/>
+                <Route path={links.login} Component={LoginForm}/>
+                <Route path={links.register} Component={RegisterForm}/>
+                <Route path={links.signOut} Component={SignOut}/>
+                <Route path={links.registerSuccess} Component={RegisterSuccess}/>
+                <Route path={links.videoCapture} Component={VideoCapture}/>
+
+                {/* Private routes */}
+                <Route path={"/protected"} element={<PrivateRoute><div>protected</div></PrivateRoute>}/>
+    
+
+                                {/* <Route exact path="/">
                   <Navigate to="/login" />
                 </Route> */}
 

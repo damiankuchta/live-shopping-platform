@@ -38,6 +38,9 @@ export default function TopBar() {
           <Button color="inherit" component={NavLink} to="/">
             Dashboard
           </Button>
+          <Button color="inherit" component={NavLink} to="/protected">
+                Protected
+              </Button>
         </Toolbar>
       </AppBar>
     </>
