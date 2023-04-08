@@ -1,5 +1,5 @@
 import { RadioGroup as RG, FormControlLabel, Radio } from '@mui/material';
-import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter';
 
 export default function RadioGroup({ values, errors, register, register_id, validators = { required: true }, ...props }) {
 

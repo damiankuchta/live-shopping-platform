@@ -1,5 +1,5 @@
 import MuiTextField from '@mui/material/TextField';
-import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter';
 
 export default function TextField({errors, register, register_id, ...props}) {
     

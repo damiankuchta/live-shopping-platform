@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "../features/auth/reducers/loginSlice";
+import authSlice from "../features/auth/reducers/authSlice";
 import { createReduxHistoryContext, reachify } from "redux-first-history";
 import { createBrowserHistory } from 'history';
 import { combineReducers } from "redux";

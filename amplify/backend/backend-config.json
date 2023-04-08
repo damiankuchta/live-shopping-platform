@@ -19,16 +19,13 @@
         },
         "signupAttributes": [
           "PHONE_NUMBER",
-          "WEBSITE",
           "FAMILY_NAME",
           "PREFERRED_USERNAME",
-          "PROFILE",
           "ADDRESS",
           "BIRTHDATE",
           "GENDER",
           "NAME",
-          "LOCALE",
-          "PICTURE"
+          "LOCALE"
         ],
         "socialProviders": [],
         "usernameAttributes": [

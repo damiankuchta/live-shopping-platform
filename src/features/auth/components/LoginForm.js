@@ -1,15 +1,26 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
-
-import TextField from "../../../components/TextField";
-import FormButton from "../../../components/FormButton";
+import { useForm } from 'react-hook-form';
+import TextField from "../../../components/Fields/TextField";
+import FormButton from "../../../components/Buttons/FormButton";
 import StyledAuthForm from "./StyledAuthForm";
+import { login } from "../reducers/authSlice";
+import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
-  const {register, formState: {errors}, handleSubmit } = useFormContext();
+
+  const dispatch = useDispatch();
+
+  const {register, formState: {errors}, handleSubmit} = useForm({
+    mode: 'onBlur',
+  });
+
+  const onSubmit = (formData) => {
+    dispatch(login(formData));
+  }
+
 
   return (
-    <StyledAuthForm onSubmit={handleSubmit}>
+    <StyledAuthForm onSubmit={handleSubmit(onSubmit)}>
       <TextField
         label="E-mail"
         type="email"

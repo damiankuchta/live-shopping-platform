@@ -1,18 +1,29 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
-
-import TextField from "../../../components/TextField";
-import RadioGroup from "../../../components/RadioGroup";
-import FormButton from "../../../components/FormButton";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import TextField from "../../../components/Fields/TextField";
+import RadioGroup from "../../../components/Fields/RadioGroup";
+import FormButton from "../../../components/Buttons/FormButton";
 import StyledAuthForm from "./StyledAuthForm";
-
+import { signUp} from '../reducers/authSlice';
+import { useDispatch } from 'react-redux';
+import { signUpSchema } from '../configs/formSchema';
 
 const RegisterForm = () => {
 
-  const {register, formState: {errors}, handleSubmit } = useFormContext();
+  const dispatch = useDispatch();
+
+  const {register, formState: {errors}, handleSubmit} = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(signUpSchema) 
+  });
+
+  const onSubmit = (formData) => {
+    dispatch(signUp(formData));
+  }
 
   return (
-    <StyledAuthForm onSubmit={handleSubmit}>
+    <StyledAuthForm onSubmit={handleSubmit(onSubmit)}>
       <TextField
         label="E-mail"
         type="email"
