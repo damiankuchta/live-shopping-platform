@@ -14,11 +14,9 @@ const PrivateRoute = ({children}) => {
 
     useLayoutEffect(() => {
         dispatch(isUserAuthenticated())
-    })
-    
-    console.log(isAuth)
+    }, [])
 
-    if (isLoading) {
+    if (isLoading) { 
         return <div>Loading...</div>;
     } else {
         return isAuth ? children : <Navigate to={loginLink} />;

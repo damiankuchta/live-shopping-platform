@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "../features/auth/reducers/authSlice";
 import { createReduxHistoryContext, reachify } from "redux-first-history";
 import { createBrowserHistory } from 'history';
 import { combineReducers } from "redux";
+
+import authSlice from "../features/auth/reducers/authSlice";
+import streamSlice from "../features/stream/reducers/streamSlice";
 
 const {
     createReduxHistory,
@@ -10,11 +12,14 @@ const {
     routerReducer
 } = createReduxHistoryContext({ history: createBrowserHistory() });
 
+//todo: remove router?
+
 const store = configureStore({
     reducer:
         combineReducers({
             auth: authSlice,
-            router: routerReducer
+            router: routerReducer,
+            stream: streamSlice
         })
     ,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware)

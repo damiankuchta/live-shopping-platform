@@ -31,16 +31,22 @@ export default function TopBar() {
               </Button>
             </React.Fragment>
             :
-            <Button color="inherit" component={NavLink} to="/signOut">
-              Sign out
-            </Button>
+            <React.Fragment>
+              <Button color="inherit" component={NavLink} to="/signOut">
+                Sign out
+              </Button>
+              <Button color="inherit" component={NavLink} to="/stream">
+                Stream
+              </Button>
+              <Button color="inherit" component={NavLink} to="/create-kinesis-stream">
+                Create Kinesis Stream
+              </Button>
+            </React.Fragment>
           }
           <Button color="inherit" component={NavLink} to="/">
             Dashboard
           </Button>
-          <Button color="inherit" component={NavLink} to="/protected">
-                Protected
-              </Button>
+
         </Toolbar>
       </AppBar>
     </>

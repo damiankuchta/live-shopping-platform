@@ -6,11 +6,12 @@ import { Route, Routes} from 'react-router-dom';
                             
 import awsconfig from './aws-exports';
 import { Amplify } from 'aws-amplify';
+import AWS from 'aws-sdk';
 
-import TopBar from "./components/TopBar/TopBar"
+import TopBar from "./components/Nav/TopBar"
 import RegisterForm from "./features/auth/components/RegisterForm";
 import LoginForm from "./features/auth/components/LoginForm";
-import VideoCapture from "./features/stream/components/VideoCapture"
+import VideoCapture from "./features/stream/components/WebRTCCapture"
 
 import RegisterSuccess from "./features/auth/components/RegisterSuccess";
 
@@ -21,6 +22,13 @@ import SignOut from "./features/auth/components/SignOut";
 import * as links from "./configs/routerLinks";
 
 import PrivateRoute from "./components/Router/PrivateRoute"
+import WebRTCCapture from "./features/stream/components/WebRTCCapture";
+import CreateKinesisStream from "./features/stream/components/CreateKinesisStream";
+
+
+AWS.config.update({
+  region: 'eu-west-1', // replace with your desired region
+});
 
 export default function App() {
 
@@ -40,8 +48,8 @@ export default function App() {
                 <Route path={links.videoCapture} Component={VideoCapture}/>
 
                 {/* Private routes */}
-                <Route path={"/protected"} element={<PrivateRoute><div>protected</div></PrivateRoute>}/>
-    
+                <Route path={"/stream"} element={<PrivateRoute><WebRTCCapture/></PrivateRoute>}/>
+                <Route path={"/create-kinesis-stream"} element={<PrivateRoute><CreateKinesisStream/></PrivateRoute>}/>
 
                                 {/* <Route exact path="/">
                   <Navigate to="/login" />

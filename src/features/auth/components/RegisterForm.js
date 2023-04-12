@@ -5,7 +5,7 @@ import TextField from "../../../components/Fields/TextField";
 import RadioGroup from "../../../components/Fields/RadioGroup";
 import FormButton from "../../../components/Buttons/FormButton";
 import StyledAuthForm from "./StyledAuthForm";
-import { signUp} from '../reducers/authSlice';
+import { signUp } from '../reducers/authSlice';
 import { useDispatch } from 'react-redux';
 import { signUpSchema } from '../configs/formSchema';
 
@@ -20,6 +20,8 @@ const RegisterForm = () => {
 
   const onSubmit = (formData) => {
     dispatch(signUp(formData));
+    //todo: on success redirect to login
+    //todo: authenticating link logs in striagh away
   }
 
   return (
